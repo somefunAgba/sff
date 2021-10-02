@@ -12,7 +12,8 @@ figure;
 for n = 1:10
     tau_g = grpdel(norm_freqw,1,n);
     
-    semilogx(norm_freqw,tau_g);
+    %semilogx
+    loglog(norm_freqw,tau_g);
     cycle3;
     hold on;
 %   pause(0.1);
@@ -28,3 +29,19 @@ xlabel('Normalized frequency $\omega$ (in radians)','Interpreter','latex')
 % ylabel('Group Delay')
 xlim([0 10*max(wlog)]);
 xlim([0 10*max(wlog)]);
+%%
+[thisfp,thisfn,~]= fileparts(which('grpdel_sim.m'));
+figname = fullfile(thisfp,'imgs', "grpdel"+num2str(max(n))+'.png');
+exportgraphics(gcf, figname,'Resolution',300)
+figname = fullfile(thisfp,'imgs',"grpdel"+num2str(max(n))+'.pdf');
+exportgraphics(gcf, figname,'Resolution',300)
+figname = fullfile(thisfp,'imgs',"grpdel"+num2str(max(n))+'.eps');
+exportgraphics(gcf, figname,'Resolution',300)
+
+
+
+
+
+
+
+

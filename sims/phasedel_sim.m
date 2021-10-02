@@ -7,6 +7,7 @@ wlog = log10(norm_freqw);
 close all
 fig1=figure('Name','phase');
 ax1 = gca;
+ax1.YScale = 'log';
 ax1.XScale='log';
 
 fig2=figure('Name','phasedelay');
@@ -49,3 +50,16 @@ xlabel(ax2,'Normalized frequency $\omega$ (in radians)','Interpreter','latex')
 xlim(ax1,[0 10*max(wlog)]);
 ylim(ax1,[-inf 0.5]);
 xlim(ax2,[0 10*max(wlog)]);
+
+%%
+infig = ["phase", "phasedel"];
+gcfsel = {fig1; fig2};
+for id = 1:2
+    [thisfp,thisfn,~]= fileparts(which('phasedel_sim.m'));
+    figname = fullfile(thisfp,'imgs', infig(id)+num2str(max(n))+'.png');
+    exportgraphics(gcfsel{id}, figname,'Resolution',300)
+    figname = fullfile(thisfp,'imgs',infig(id)+num2str(max(n))+'.pdf');
+    exportgraphics(gcfsel{id}, figname,'Resolution',300)
+    figname = fullfile(thisfp,'imgs',infig(id)+num2str(max(n))+'.eps');
+    exportgraphics(gcfsel{id}, figname,'Resolution',300)
+end

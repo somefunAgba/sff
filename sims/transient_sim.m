@@ -5,26 +5,29 @@ Tf = 30; % final time
 close all;
 fig1=figure('Name','impulse');
 ax1 = gca;
-ax1.XScale='log';
+% ax1.XScale='log';
 
 fig2=figure('Name','step');
 ax2 = gca;
-ax2.XScale='log';
+% ax2.XScale='log';
+Yi=[]; Ys=[];
 
 for n=1:N
-% Order n filter coefficients
+% - order n filter coefficients
 % normalized analog denominator
-am = dbpoly_kern(n,0);
+am = udbmfpoly1d(n,0,1);
 % normalized analog numerator
-bm= zeros(1,n+1); bm(n+1) = 1;
+bm = flip(eye(1,n+1),2); % rot90(eye(1,n+1),2)
 F = tf(bm,am);
 
-% Step and Impulse Response plot of the UDB low-pass Filter
+% -step and impulse response plot
 % with normalized cut-off frequency for values of $n=1$ (blue) to $n=10$
 % (brown).
 [yi,ti]=impulse(F,Tf);
+% Yi=[Yi; yi];
 
 [ys,ts]=step(F,Tf);
+% Ys=[Ys; ys];
 
 plot(ax1,ti,yi);
 % grid(ax1,'on');
@@ -37,12 +40,13 @@ cycle3(ax2);
 hold(ax2,'on');
 end
 
+%
 hold(ax1,'off');
 hold(ax2,'off');
 
 xlabel(ax1,'Normalized time $t$ (in seconds)','Interpreter','latex')
 % ylabel(ax1,'Amplitude')
-ylim(ax1,[-0.1 1.05])
+ylim(ax1,[-0.1 1.15])
 xlim(ax1,[0 max(ti)]);
 
 xlabel(ax2,'Normalized time $t$ (in seconds)','Interpreter','latex')

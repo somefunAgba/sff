@@ -2,6 +2,12 @@
 
 ## Also called: Five-perent Uniformly Damped Binomial Filters (UDBMF5)
 
+The source code here is in MATLAB (can convert to any language of choice). 
+
+*core algorithms*: `` func `` directory 
+
+*simulations*: `` sim `` directory
+
 In this paper, the five-percent maximum overshoot design of uniformly damped binomial filters (transfer functions) is introduced. To extend the maximum overshoot response of the second-order Butterworth to higher orders, the binomial theorem is extended to the uniformly damped binomial theorem. 
 
 Read here: https://rdcu.be/cFRy2

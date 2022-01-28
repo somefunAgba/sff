@@ -4,7 +4,7 @@
 
 The source code here is in MATLAB (can convert to any language of choice). 
 
-*core algorithms*: `` func `` directory 
+*core algorithms*: `` funcs `` directory 
 
 *simulations*: ``cases-sim``, `` sim `` directory
 
